@@ -1,0 +1,35 @@
+name: Testes com Cypress
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Executar Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          wait-on: http://localhost:8080
+          wait-on-timeout: 120
+          command: npm test
+      - name: Salvar evidencias
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-evidencias
+          path: |
+            cypress/screenshots
+            cypress/videos

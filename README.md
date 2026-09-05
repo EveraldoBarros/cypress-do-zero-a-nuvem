@@ -23,6 +23,31 @@
 
 Vá para a seção [estrutura do curso](./lessons/_course-structure_.md)
 
+## Execução local
+
+Pré-requisitos: Node.js 20 ou superior e npm.
+
+```bash
+npm install
+npm start
+```
+
+Em outro terminal, abra o Cypress ou execute os testes em modo headless:
+
+```bash
+npm run cy:open
+npm test
+npm run test:mobile
+```
+
+O servidor local disponibiliza a aplicação em `http://localhost:8080`. O workflow do GitHub Actions executa a mesma suíte a cada `push` ou _pull request_.
+
+Para gravar resultados no Cypress Cloud, configure `projectId` no `cypress.config.js` e a variável secreta `CYPRESS_RECORD_KEY`, então execute `npm run test:cloud`.
+
 ___
 
-Este é um curso da **Escola Talking About Testing**.
+## Autoria
+
+Esta versão e as implementações dos exercícios foram realizadas por **Everaldo BArros**.
+
+O projeto original e o conteúdo do curso são de autoria de [Walmyr Lima e Silva Filho](https://walmyr.dev/), da [Escola Talking About Testing](https://talkingabouttesting.com/). O repositório original está disponível em [wlsf82/cypress-do-zero-a-nuvem](https://github.com/wlsf82/cypress-do-zero-a-nuvem).
